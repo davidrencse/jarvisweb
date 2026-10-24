@@ -1,0 +1,45 @@
+.tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  display: grid;
+  gap: 2px;
+  width: max-content;
+  max-width: 232px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--paper);
+  box-shadow: var(--shadow-1);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  color: var(--ink);
+  pointer-events: none;
+  animation: tip-in var(--dur-base) var(--ease-out) both;
+}
+
+.tip:not([data-placed]) {
+  visibility: hidden;
+}
+
+.ticker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+@keyframes tip-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tip {
+    animation: none;
+  }
+}

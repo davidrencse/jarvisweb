@@ -1,0 +1,70 @@
+{
+  "name": "JARVIS site",
+  "color": {
+    "paper": "#ffffff",
+    "paper2": "#f5f5f4",
+    "paper3": "#ececea",
+    "line": "#e6e6e3",
+    "lineStrong": "#cfcfcb",
+    "ink": "#0a0a0a",
+    "ink2": "#525250",
+    "ink3": "#6f6f6c",
+    "ink4": "#a8a8a4",
+    "inverse": "#0a0a0a",
+    "onInverse": "#fafafa",
+    "onInverse2": "#a9a9a5",
+    "inverseLine": "#2a2a29"
+  },
+  "font": {
+    "display": "Funnel Display Variable",
+    "sans": "Funnel Sans Variable",
+    "mono": "Fragment Mono"
+  },
+  "radius": {
+    "xs": 4,
+    "s": 8,
+    "m": 14,
+    "pill": 999
+  },
+  "space": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64,
+    96,
+    128,
+    176
+  ],
+  "motion": {
+    "easeOut": [
+      0.16,
+      1,
+      0.3,
+      1
+    ],
+    "easeInOut": [
+      0.65,
+      0,
+      0.35,
+      1
+    ],
+    "springs": {
+      "soft": {
+        "bounce": 0,
+        "visualDuration": 0.6
+      },
+      "snappy": {
+        "bounce": 0.12,
+        "visualDuration": 0.32
+      },
+      "layout": {
+        "bounce": 0.08,
+        "visualDuration": 0.45
+      }
+    }
+  }
+}

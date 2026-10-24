@@ -1,0 +1,38 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--paper-2);
+}
+
+.wiki {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line-strong);
+}
+
+.wikiLabel {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.wikiLine {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.claim {
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .wiki {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-3);
+  }
+}

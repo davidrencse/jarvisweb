@@ -1,0 +1,64 @@
+.exchange {
+  display: grid;
+}
+
+.exchange > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.said {
+  min-height: 1.5em;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.28em;
+}
+
+.reply {
+  max-width: 27em;
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: var(--tracking-heading);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.reply[data-tone="muted"] {
+  color: var(--ink-3);
+}
+
+.sentence {
+  display: block;
+}
+
+.sentence + .sentence {
+  margin-top: 0.14em;
+}
+
+.timings {
+  min-height: 1.5em;
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  color: var(--ink-3);
+}
+
+.timing {
+  display: inline-block;
+  margin-right: 0.8ch;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,29 @@
+.section {
+  padding-block: var(--section-y);
+}
+
+.head h2 {
+  max-width: none;
+}
+
+.body {
+  display: block;
+}
+
+.panels {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .body {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+  }
+
+  .panels {
+    grid-column: 6 / span 7;
+    grid-row: 1;
+    margin-block: calc(clamp(32px, 6vw, 88px) * -1);
+  }
+}

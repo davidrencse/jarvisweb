@@ -1,0 +1,84 @@
+.footer {
+  background: var(--inverse);
+  color: var(--on-inverse);
+  padding-bottom: var(--space-7);
+}
+
+.rule {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--inverse-line);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-6);
+}
+
+.brand {
+  justify-self: start;
+  padding-block: 6px;
+  color: var(--on-inverse);
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--space-5);
+}
+
+.link {
+  display: inline-block;
+  padding-block: 8px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: var(--on-inverse-2);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    text-decoration-color var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--on-inverse);
+    text-decoration-color: currentColor;
+  }
+}
+
+.link:focus-visible {
+  color: var(--on-inverse);
+}
+
+.meta {
+  justify-self: end;
+  display: grid;
+  gap: var(--space-1);
+  padding-block: 8px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  text-align: right;
+  color: var(--on-inverse-2);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .links {
+    justify-content: flex-start;
+    gap: 0 var(--space-5);
+  }
+  .meta {
+    justify-self: start;
+    padding-top: var(--space-4);
+    text-align: left;
+  }
+}

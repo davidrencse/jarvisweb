@@ -1,0 +1,160 @@
+.shot {
+  margin-top: var(--space-8);
+}
+
+.bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-3);
+}
+
+.toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--paper-2);
+}
+
+.option {
+  position: relative;
+  height: 30px;
+  padding: 0 var(--space-4);
+  border-radius: var(--r-pill);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  font-weight: 520;
+  white-space: nowrap;
+  transition: color var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .option:hover {
+    color: var(--ink);
+  }
+}
+
+.option[aria-checked="true"] {
+  color: var(--paper);
+}
+
+.option:focus-visible {
+  border-radius: var(--r-pill);
+  outline-offset: 2px;
+}
+
+.pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.optionLabel {
+  position: relative;
+}
+
+.figure {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  container-type: inline-size;
+}
+
+/* Camera distance 2.2 plane heights = 137.5% of the width at 16:10; the scene uses the same value. */
+.stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1800px;
+  perspective: 137.5cqw;
+}
+
+.shadow {
+  position: absolute;
+  inset: 0 0 18% 0;
+  border-radius: var(--r-m) var(--r-m) 0 0;
+  box-shadow: var(--shadow-2);
+  transform-origin: 50% 61%;
+  will-change: transform;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.canvas[data-show="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.canvas[data-instant="true"] {
+  transition: none;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--r-m);
+  pointer-events: none;
+  will-change: transform;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+.poster[data-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  will-change: auto;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    visibility 0s linear var(--dur-slow);
+}
+
+.poster::after {
+  content: "";
+  position: absolute;
+  inset: 84% 0 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--paper) 16%, transparent) 25%,
+    color-mix(in srgb, var(--paper) 50%, transparent) 50%,
+    color-mix(in srgb, var(--paper) 84%, transparent) 75%,
+    var(--paper)
+  );
+}
+
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.caption {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  color: var(--ink-3);
+}
+
+@media (max-width: 700px) {
+  .shot {
+    margin-top: var(--space-7);
+  }
+}

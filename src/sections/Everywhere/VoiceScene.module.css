@@ -1,0 +1,67 @@
+.root {
+  --pad: clamp(24px, 5cqw, 72px);
+
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--pad) var(--pad) 0;
+}
+
+.copy {
+  display: grid;
+  margin-block: auto;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.bubble {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.6cqw, 3.5rem);
+  font-weight: 560;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+
+.brief {
+  display: grid;
+}
+
+.line {
+  padding-block: 0.7em;
+  border-top: 1px solid var(--line);
+  font-size: clamp(1rem, 1.9cqw, 1.5rem);
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+
+.wave {
+  flex: none;
+  height: clamp(72px, 14cqw, 160px);
+  margin-inline: calc(var(--pad) * -1);
+  color: var(--ink);
+}
+
+.wave svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.wave path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+@container (min-width: 720px) {
+  .copy {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: 6cqw;
+    align-items: end;
+  }
+}

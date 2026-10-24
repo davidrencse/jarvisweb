@@ -1,0 +1,111 @@
+.button {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  --btn-border: var(--ink);
+  --btn-bg-hover: var(--ink-hover);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-sans);
+  font-weight: 520;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.sm {
+  height: 36px;
+  padding: 0 16px;
+  font-size: var(--text-sm);
+}
+.md {
+  height: 46px;
+  padding: 0 22px;
+  font-size: var(--text-base);
+}
+.lg {
+  height: 56px;
+  padding: 0 28px;
+  font-size: var(--text-lg);
+}
+
+.primary:hover {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+}
+
+.secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-border: var(--line-strong);
+}
+.secondary:hover {
+  --btn-border: var(--ink);
+  background: var(--paper-2);
+}
+
+.quiet {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-border: transparent;
+  padding-inline: 4px;
+  border-radius: var(--r-xs);
+}
+.quiet .label {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--dur-base) var(--ease-out);
+}
+.quiet:hover .label {
+  text-decoration-color: currentColor;
+}
+
+.inverse.primary {
+  --btn-bg: var(--on-inverse);
+  --btn-fg: var(--inverse);
+  --btn-border: var(--on-inverse);
+  --btn-bg-hover: var(--paper);
+}
+.inverse.secondary {
+  --btn-fg: var(--on-inverse);
+  --btn-border: var(--inverse-line);
+}
+.inverse.secondary:hover {
+  --btn-border: var(--on-inverse);
+  background: var(--inverse-2);
+}
+.inverse.quiet {
+  --btn-fg: var(--on-inverse);
+}
+.inverse.quiet .label {
+  text-decoration-color: var(--inverse-line);
+}
+
+.arrow {
+  flex: none;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.button:hover .arrow {
+  transform: translateX(3px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}

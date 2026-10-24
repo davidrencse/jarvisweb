@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* shadcn / Watermelon variables, mapped onto the monochrome tokens in tokens.css */
+:root {
+  --radius: 14px;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-2);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--paper-2);
+  --accent-foreground: var(--ink);
+  --destructive: var(--ink);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--ink);
+}
+
+.inverse {
+  --background: var(--inverse);
+  --foreground: var(--on-inverse);
+  --card: var(--inverse-2);
+  --card-foreground: var(--on-inverse);
+  --popover: var(--inverse-2);
+  --popover-foreground: var(--on-inverse);
+  --primary: var(--on-inverse);
+  --primary-foreground: var(--inverse);
+  --secondary: var(--inverse-2);
+  --secondary-foreground: var(--on-inverse);
+  --muted: var(--inverse-2);
+  --muted-foreground: var(--on-inverse-2);
+  --accent: var(--inverse-2);
+  --accent-foreground: var(--on-inverse);
+  --border: var(--inverse-line);
+  --input: var(--inverse-line);
+  --ring: var(--on-inverse);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink-4: var(--ink-4);
+  --color-on-inverse: var(--on-inverse);
+  --color-on-inverse-2: var(--on-inverse-2);
+}

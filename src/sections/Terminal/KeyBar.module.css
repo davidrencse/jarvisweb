@@ -1,0 +1,86 @@
+.keys {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-1) var(--space-3);
+  border-top: 1px solid var(--line);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.keys::-webkit-scrollbar {
+  display: none;
+}
+
+.key,
+.hint {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+}
+
+.key {
+  position: relative;
+  border-radius: var(--r-s);
+  color: var(--ink-2);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .key:hover {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+}
+
+.key:active {
+  transform: scale(0.97);
+}
+
+.key:focus-visible {
+  border-radius: var(--r-s);
+  outline-offset: -2px;
+}
+
+.cap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xs);
+  background: var(--paper-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.mark {
+  position: absolute;
+  right: var(--space-3);
+  bottom: 3px;
+  left: var(--space-3);
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+}
+
+.hint {
+  margin-left: auto;
+  color: var(--ink-3);
+}

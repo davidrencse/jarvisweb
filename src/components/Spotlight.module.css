@@ -1,0 +1,52 @@
+.spotlight {
+  --sx: 50%;
+  --sy: -200px;
+  --spot-fill: rgb(10 10 10 / 0.04);
+  --spot-edge: rgb(10 10 10 / 0.5);
+
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--r-m);
+}
+
+.inverse {
+  --spot-fill: rgb(250 250 250 / 0.05);
+  --spot-edge: rgb(250 250 250 / 0.55);
+}
+
+.spotlight::before,
+.spotlight::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.spotlight::before {
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(var(--spot-r) circle at var(--sx) var(--sy), var(--spot-fill), transparent 70%);
+}
+
+.spotlight::after {
+  inset: -1px;
+  z-index: 2;
+  padding: 1px;
+  background: radial-gradient(calc(var(--spot-r) * 0.6) circle at var(--sx) var(--sy), var(--spot-edge), transparent 72%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover::before,
+  .spotlight:hover::after {
+    opacity: 1;
+  }
+}

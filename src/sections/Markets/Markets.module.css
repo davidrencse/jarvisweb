@@ -1,0 +1,43 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--paper-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.map,
+.side,
+.mood,
+.strategy {
+  display: grid;
+  min-width: 0;
+}
+
+.map {
+  grid-column: span 8;
+}
+
+.side {
+  grid-column: span 4;
+}
+
+.mood {
+  grid-column: span 4;
+}
+
+.strategy {
+  grid-column: span 8;
+}
+
+@media (max-width: 1000px) {
+  .map,
+  .side,
+  .mood,
+  .strategy {
+    grid-column: 1 / -1;
+  }
+}

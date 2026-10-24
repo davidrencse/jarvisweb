@@ -1,0 +1,76 @@
+:root {
+  /* Paper and ink. Monochrome by brief: no hue anywhere. */
+  --paper: #ffffff;
+  --paper-2: #f5f5f4;
+  --paper-3: #ececea;
+  --line: #e6e6e3;
+  --line-strong: #cfcfcb;
+  --ink: #0a0a0a;
+  --ink-2: #525250;
+  --ink-3: #6f6f6c;
+  --ink-4: #a8a8a4;
+
+  --inverse: #0a0a0a;
+  --inverse-2: #161616;
+  --inverse-line: #2a2a29;
+  --inverse-track: #3d3d3b;
+  --inverse-raised: #1c1c1b;
+  --ink-hover: #262626;
+  --on-inverse: #fafafa;
+  --on-inverse-2: #a9a9a5;
+
+  --font-display: "Funnel Display Variable", "Funnel Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Funnel Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Fragment Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Type scale. Display tops out at 6rem. */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.3rem + 1.8vw, 2.75rem);
+  --text-3xl: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  --text-4xl: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
+  --text-5xl: clamp(3rem, 1.7rem + 5.4vw, 6rem);
+
+  --leading-tight: 1.02;
+  --leading-snug: 1.15;
+  --leading-body: 1.55;
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.025em;
+  --tracking-label: 0.01em;
+
+  /* 4px rhythm */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 176px;
+
+  --section-y: clamp(96px, 11vw, 176px);
+  --gutter: clamp(16px, 4vw, 40px);
+  --max: 1320px;
+  --measure: 62ch;
+  --nav-h: 64px;
+
+  --r-xs: 4px;
+  --r-s: 8px;
+  --r-m: 14px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgb(10 10 10 / 0.04), 0 10px 30px -14px rgb(10 10 10 / 0.16);
+  --shadow-2: 0 2px 4px rgb(10 10 10 / 0.04), 0 24px 60px -24px rgb(10 10 10 / 0.22);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+}

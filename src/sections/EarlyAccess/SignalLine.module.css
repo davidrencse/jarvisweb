@@ -1,0 +1,28 @@
+.trace {
+  position: absolute;
+  inset-inline: 0;
+  bottom: var(--trace-bottom);
+  height: var(--trace-h);
+  color: var(--on-inverse);
+  pointer-events: none;
+}
+
+.reveal {
+  width: 100%;
+  height: 100%;
+}
+
+.trace svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.trace path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}

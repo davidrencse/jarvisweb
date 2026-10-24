@@ -1,0 +1,88 @@
+.track {
+  position: relative;
+  margin-bottom: clamp(64px, 8vw, 112px);
+}
+
+.roles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--space-6);
+}
+
+.lineH,
+.lineV {
+  position: absolute;
+  background: var(--line-strong);
+  pointer-events: none;
+}
+.lineH {
+  top: 4px;
+  left: 4px;
+  right: 0;
+  height: 1px;
+}
+.lineV {
+  display: none;
+  top: 12px;
+  left: 4px;
+  bottom: 0;
+  width: 1px;
+}
+
+.role {
+  position: relative;
+  padding-top: var(--space-6);
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper-2);
+}
+.node[data-final="true"] {
+  background: var(--ink);
+}
+
+.name {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+}
+
+.text {
+  max-width: 30ch;
+  margin-top: var(--space-2);
+  color: var(--ink-2);
+}
+
+@media (max-width: 1000px) {
+  .text {
+    font-size: var(--text-sm);
+  }
+}
+
+@media (max-width: 760px) {
+  .text {
+    font-size: var(--text-base);
+  }
+  .roles {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-6);
+  }
+  .lineH {
+    display: none;
+  }
+  .lineV {
+    display: block;
+  }
+  .role {
+    padding: 0 0 0 var(--space-6);
+  }
+  .node {
+    top: 8px;
+  }
+}

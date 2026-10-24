@@ -1,0 +1,231 @@
+.instrument {
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-m);
+}
+
+.strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-4);
+  min-height: 56px;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  color: var(--ink-3);
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--ink);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.dot[data-tone="live"] {
+  animation: breathe 2.4s var(--ease-in-out) infinite;
+}
+
+.dot[data-tone="check"] {
+  animation: breathe 0.8s var(--ease-in-out) infinite;
+}
+
+.dot[data-tone="hollow"] {
+  border-color: var(--ink-3);
+  background: transparent;
+}
+
+.dot[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.78);
+  }
+}
+
+.statusText {
+  display: inline-block;
+  min-width: 14ch;
+}
+
+.statusLabel {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+
+.segment {
+  position: relative;
+  min-height: 32px;
+  padding: 0 16px;
+  border-radius: var(--r-pill);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ink-3);
+  transition: color var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.segment:hover,
+.segment[aria-pressed="true"] {
+  color: var(--ink);
+}
+
+.segment:focus-visible {
+  border-radius: var(--r-pill);
+}
+
+.pill {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+}
+
+.segmentLabel {
+  position: relative;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.simulated {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  color: var(--ink-3);
+}
+
+.pause {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--ink);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pause:hover {
+  background: var(--paper-2);
+  border-color: var(--ink);
+}
+
+.pause:focus-visible {
+  border-radius: 50%;
+}
+
+.pauseIcon {
+  display: inline-flex;
+}
+
+.stage {
+  height: 160px;
+}
+
+.readout {
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  border-top: 1px solid var(--line);
+}
+
+.readout > * + * {
+  margin-top: var(--space-5);
+}
+
+@media (max-width: 720px) {
+  .strip {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .status {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .meta {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .segmented {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .segment {
+    flex: 1;
+    min-height: 40px;
+  }
+
+  .pause {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stage {
+    height: 110px;
+  }
+
+  .readout {
+    padding: var(--space-5) var(--space-4) var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot[data-tone="live"] {
+    animation: none;
+  }
+  .dot[data-tone="check"] {
+    animation: none;
+  }
+}

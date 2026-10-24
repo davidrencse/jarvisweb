@@ -1,0 +1,19 @@
+.line {
+  display: block;
+}
+
+.mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.plain {
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+}

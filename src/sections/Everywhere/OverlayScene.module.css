@@ -1,0 +1,204 @@
+.desk {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--paper-3);
+  font-size: clamp(0.8125rem, 1.4cqw, 1.125rem);
+}
+
+.windowBack {
+  position: absolute;
+  inset: 9% 4% 32% 20%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--paper-2);
+}
+
+.window {
+  position: absolute;
+  inset: 20% 16% 26% 5%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--paper);
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  height: 2.6em;
+  padding-inline: 1em;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+}
+
+.control {
+  width: 0.7em;
+  height: 0.7em;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+}
+
+.titleBar {
+  width: 24%;
+  height: 0.5em;
+  margin-left: 1em;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+}
+
+.winBody {
+  display: grid;
+  grid-template-columns: 22% minmax(0, 1fr);
+  min-height: 0;
+}
+
+.side {
+  display: grid;
+  align-content: start;
+  gap: 0.9em;
+  padding: 1.4em 1.1em;
+  border-right: 1px solid var(--line);
+}
+
+.doc {
+  display: grid;
+  align-content: start;
+  gap: 0.9em;
+  padding: 1.6em 1.8em;
+  overflow: hidden;
+}
+
+.bar {
+  display: block;
+  height: 0.5em;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+}
+
+.heading {
+  height: 0.9em;
+  margin-bottom: 0.4em;
+  background: var(--line-strong);
+}
+
+.gap {
+  height: 0.5em;
+}
+
+.taskbar {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  height: 2.9em;
+  border-top: 1px solid var(--line-strong);
+  background: var(--paper-2);
+}
+
+.slot {
+  width: 1.15em;
+  height: 1.15em;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.3em;
+  background: var(--paper-3);
+}
+
+.keys {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 4.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+}
+
+.key {
+  display: grid;
+  place-items: center;
+  min-width: 3.4em;
+  height: 3.4em;
+  padding-inline: 1em;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--paper);
+  box-shadow:
+    0 1px 0 var(--line-strong),
+    0 12px 22px -14px rgb(10 10 10 / 0.4);
+  color: var(--ink);
+  font-size: 0.95em;
+}
+
+.plus {
+  color: var(--ink-3);
+}
+
+.sheet {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  width: min(40em, 90%);
+  margin-inline: auto;
+  padding: 1.2em 1.5em 1.4em;
+  border: 1px solid var(--line-strong);
+  border-top: 0;
+  border-radius: 0 0 var(--r-m) var(--r-m);
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-2);
+}
+
+.brand {
+  margin-bottom: 1.1em;
+  color: var(--ink-2);
+}
+
+.query {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 1.1em;
+  color: var(--ink);
+}
+
+.query svg {
+  flex: none;
+  color: var(--ink-3);
+}
+
+.reply {
+  padding-top: 1em;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.meta {
+  margin-top: 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--ink-3);
+}
+
+@container (max-width: 520px) {
+  .window {
+    inset: 22% 6% 22% 6%;
+  }
+  .windowBack {
+    inset: 12% 3% 30% 12%;
+  }
+  .side {
+    display: none;
+  }
+  .winBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

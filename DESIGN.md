@@ -50,7 +50,7 @@ A Braun-white instrument. Pure white paper, ink, three greys and 1px hairlines; 
 
 ## Architecture page (`architecture.html`)
 
-Second Vite entry (`src/architecture/`). Request-path tracer (SVG, solid = free, dashed = subscription quota, double outline = waits for you; labelled Simulated), main/node topology with the SSH tunnel lanes, module map (bars sized by lines), the System page in the vision viewer, and real CLI output with copyable commands.
+Second Vite entry (`src/architecture/`). Dark hero with a WebGL glass pipeline (`three/PipelineScene.tsx`): nine transmissive glass slides, packets flowing through, a dashed model-path arc and a pause at the confirm queue; phones look down the row head-on. The owner asked for glass here, an explicit exception to the no-glass rule; the cluster diagram stays calm 2D on request. Request-path tracer (SVG, solid = free, dashed = subscription quota, double outline = waits for you; labelled Simulated), main/node topology as a quiet 2D SVG (hairline lanes, one slow dot on the selected lane, vertical layout on phones), module map (bars sized by lines), the System page in the vision viewer, and real CLI output with copyable commands.
 
 ## Browser surfaces
 

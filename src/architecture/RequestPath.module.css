@@ -412,3 +412,75 @@
   color: var(--on-inverse);
   border-color: var(--inverse-track);
 }
+
+/* Phones: the wide board gives way to the step rail. */
+@media (max-width: 760px) {
+  .controls {
+    padding: var(--space-3);
+  }
+  .form {
+    flex-direction: column;
+  }
+  .go {
+    justify-content: center;
+  }
+  .presets {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: calc(var(--space-3) * -1);
+    padding-inline: var(--space-3);
+    scrollbar-width: none;
+  }
+  .presets::-webkit-scrollbar {
+    display: none;
+  }
+  .preset {
+    flex: none;
+  }
+  .board {
+    display: none;
+  }
+  .readout {
+    border-top: 0;
+  }
+  .steps {
+    max-height: none;
+    gap: 0;
+  }
+  .stepRow {
+    position: relative;
+    padding-left: var(--space-5);
+    border-left: 0;
+  }
+  .stepRow::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--inverse-track);
+  }
+  .stepRow::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 14px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid var(--on-inverse-2);
+    background: var(--inverse-2);
+  }
+  .stepRow[data-state="hit"]::after,
+  .stepRow[data-state="wait"]::after {
+    background: var(--on-inverse);
+    border-color: var(--on-inverse);
+  }
+  .stepRow[data-state="miss"]::after {
+    border-style: dashed;
+  }
+  .summary {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}

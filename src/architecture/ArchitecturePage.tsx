@@ -12,6 +12,7 @@ import { TOTAL_LINES, TOTAL_MODULES } from "./modules";
 import { ProofPanel } from "./ProofPanel";
 import { RequestPath } from "./RequestPath";
 import { Topology } from "./Topology";
+import { HeroPipeline } from "./three/HeroPipeline";
 import { SYSTEM_SHOTS } from "./systemShots";
 import styles from "./ArchitecturePage.module.css";
 
@@ -69,10 +70,17 @@ export default function ArchitecturePage() {
             Back to the site
           </a>
         </div>
+        <nav aria-label="On this page, compact" className={styles.chips}>
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href} className={styles.chip}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
       </header>
 
       <main id="main">
-        <section className={styles.hero} aria-labelledby="arch-title">
+        <section className={`inverse ${styles.hero}`} aria-labelledby="arch-title">
           <div className="container">
             <RevealText
               as="h1"
@@ -91,6 +99,17 @@ export default function ArchitecturePage() {
                 the rules can’t settle, and a confirm queue for anything with consequences.
               </p>
             </FadeIn>
+          </div>
+
+          <div className={styles.heroStage}>
+            <HeroPipeline className={styles.heroScene} />
+            <p className={`container ${styles.heroCaption}`}>
+              Illustration. Every request passes the same nine stations. Some leave the parser for the model path and
+              come back as intents, over the arc. Risky ones wait at the confirm queue.
+            </p>
+          </div>
+
+          <div className="container">
             <ul className={styles.rules}>
               {RULES.map((r, i) => (
                 <FadeIn as="li" key={r.title} delay={0.6 + i * 0.08} y={12} className={styles.rule}>

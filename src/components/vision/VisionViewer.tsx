@@ -103,7 +103,7 @@ export function VisionViewer({ shots, aspect = 1.6, label, className }: Props) {
 
   const onMove = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
-      if (e.pointerType !== "mouse") return;
+      if (e.pointerType !== "mouse" && e.buttons === 0) return;
       const r = e.currentTarget.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width;
       const y = (e.clientY - r.top) / r.height;
@@ -186,6 +186,13 @@ export function VisionViewer({ shots, aspect = 1.6, label, className }: Props) {
           className={styles.frame}
           style={{ aspectRatio: String(aspect) }}
           onPointerMove={onMove}
+          onPointerDown={(e) => {
+            if (e.pointerType !== "mouse") onMove(e);
+          }}
+          onPointerUp={(e) => {
+            if (e.pointerType !== "mouse") onLeave();
+          }}
+          onPointerCancel={onLeave}
           onPointerLeave={onLeave}
           data-vision={vision}
           data-gl={gl && ready}

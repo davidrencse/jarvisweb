@@ -2,7 +2,12 @@
   border: 1px solid var(--line);
   border-radius: var(--r-m);
   background: var(--paper);
-  padding: var(--space-4);
+  padding: var(--space-5);
+}
+@media (max-width: 760px) {
+  .wrap {
+    padding: var(--space-4);
+  }
 }
 
 .bar {
@@ -47,54 +52,60 @@
   font-size: var(--text-sm);
 }
 
-.scroller {
-  margin-top: var(--space-4);
-  overflow-x: auto;
+/* Diagram */
+
+.figure {
+  margin: var(--space-6) 0 0;
 }
 
-.svg {
+.wide,
+.tall {
   width: 100%;
-  min-width: 820px;
   height: auto;
   font-family: var(--font-sans);
+  overflow: visible;
+}
+.tall {
+  display: none;
+  max-width: 340px;
+  margin-inline: auto;
+}
+@media (max-width: 700px) {
+  .wide {
+    display: none;
+  }
+  .tall {
+    display: block;
+  }
 }
 
 .machine {
-  fill: var(--paper-2);
-  stroke: var(--line-strong);
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
 }
 .mName {
   fill: var(--ink);
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 560;
   letter-spacing: -0.02em;
 }
 .mSub {
   fill: var(--ink-3);
   font-family: var(--font-mono);
+  font-size: 12px;
+}
+.tag {
+  fill: var(--ink);
+}
+.tagText {
+  fill: var(--paper);
+  font-family: var(--font-mono);
   font-size: 11.5px;
 }
-.part {
-  fill: var(--paper);
-  stroke: var(--line);
-}
-.part[data-hub="true"] {
-  fill: var(--ink);
-  stroke: var(--ink);
-}
-.part[data-hub="true"] + .partText {
-  fill: var(--paper);
-}
-.partText {
-  fill: var(--ink-2);
-  font-size: 13px;
-}
 
-.tunnel {
-  fill: var(--ink);
-}
-.tunnelLabel {
+.caption {
   fill: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 11.5px;
@@ -103,75 +114,107 @@
 .lane {
   cursor: pointer;
 }
-.track {
-  stroke: var(--inverse-line);
+.line {
+  stroke: var(--line-strong);
   stroke-width: 1;
+  transition: stroke var(--dur-base) var(--ease-out);
 }
-.flow {
-  stroke: var(--on-inverse-2);
-  stroke-width: 2;
-  stroke-dasharray: 3 14;
-  stroke-linecap: round;
-  animation: flow 1.1s linear infinite;
-  opacity: 0.55;
-  transition: opacity var(--dur-base) var(--ease-out);
+.lane[data-on="true"] .line {
+  stroke: var(--ink);
 }
-.flow[data-dir="-1"] {
-  animation-direction: reverse;
-}
-.lane[data-on="true"] .flow {
-  stroke: var(--on-inverse);
-  opacity: 1;
-  animation-duration: 0.6s;
-}
-@keyframes flow {
-  to {
-    stroke-dashoffset: -17;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .flow {
-    animation: none;
-  }
-}
-.laneText {
-  fill: var(--on-inverse-2);
+.laneLabel {
+  fill: var(--ink-4);
   font-family: var(--font-mono);
   font-size: 11px;
   transition: fill var(--dur-base) var(--ease-out);
 }
-.lane[data-on="true"] .laneText {
-  fill: var(--on-inverse);
+.lane[data-on="true"] .laneLabel {
+  fill: var(--ink);
+}
+@media (hover: hover) {
+  .lane:hover .line {
+    stroke: var(--ink-3);
+  }
+  .lane[data-on="true"]:hover .line {
+    stroke: var(--ink);
+  }
+}
+
+/* One dot, gliding slowly along the selected lane. */
+.dot {
+  fill: var(--ink);
+  animation: glideX 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.dotY {
+  animation-name: glideY;
+}
+@keyframes glideX {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--d));
+    opacity: 0;
+  }
+}
+@keyframes glideY {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--d));
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    transform: translateX(calc(var(--d) / 2));
+  }
+  .dotY {
+    transform: translateY(calc(var(--d) / 2));
+  }
 }
 
 .lanLine,
 .lanBridge {
   fill: none;
-  stroke: var(--ink);
-  stroke-width: 1.5;
-  stroke-dasharray: 2 5;
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  stroke-dasharray: 1 5;
   stroke-linecap: round;
   transition:
     opacity var(--dur-slow) var(--ease-out),
     stroke var(--dur-slow) var(--ease-out);
 }
-.lan[data-apart="true"] .lanBridge {
+.figure[data-apart="true"] .lanBridge {
   opacity: 0;
 }
-.lan[data-apart="true"] .lanLine {
-  stroke: var(--ink-4);
+.figure[data-apart="true"] .lanLine {
+  stroke: var(--line-strong);
 }
-.lanText {
-  fill: var(--ink-2);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-}
+
+/* Lanes and notes */
 
 .lanes {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
 }
 .laneBtn {
   height: 32px;
@@ -192,8 +235,49 @@
 
 .note {
   max-width: 68ch;
+  min-height: 3.2em;
   margin-top: var(--space-3);
   color: var(--ink-2);
   font-size: var(--text-sm);
   line-height: 1.6;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 600px) {
+  .parts {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+.partsTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 560;
+  letter-spacing: -0.015em;
+}
+.parts ul {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--space-2);
+}
+.parts li {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.parts li::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  vertical-align: middle;
 }

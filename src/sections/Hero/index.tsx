@@ -12,7 +12,7 @@ export default function Hero() {
           <RevealText
             as="h1"
             id="hero-title"
-            text={"A Bloomberg Terminal\nfor everything."}
+            text={"One assistant for\nevery computer you own."}
             variant="rise"
             trigger="mount"
             step={0.07}
@@ -22,8 +22,8 @@ export default function Hero() {
           <div className={styles.side}>
             <FadeIn delay={0.5} className={styles.lede}>
               <p>
-                Bloomberg built a terminal for money. JARVIS is one for the rest of your life: your notes, deadlines,
-                markets, machines and AI usage on one screen, in plain English. Type a command, or just say “Jarvis.”
+                Say “Jarvis, open Spotify on the Dell” from either laptop. It checks the voice is yours, handles most
+                requests without calling a model, acts on the machine you meant, then checks the screen to confirm it worked.
               </p>
             </FadeIn>
             <FadeIn delay={0.7} className={styles.actions}>

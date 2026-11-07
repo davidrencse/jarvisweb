@@ -9,7 +9,7 @@ export default function Voice() {
           id="voice-title"
           layout="split"
           title={"It only answers\nto you."}
-          lede="Before a single word is transcribed, JARVIS checks the voice against yours. Strangers aren't written down and aren't answered. Try both below."
+          lede="While it listens, JARVIS checks the voice against yours. A stranger’s words are dropped unread, and nothing happens without “Jarvis” up front. Try both below."
         />
         <VoiceCheck />
       </div>

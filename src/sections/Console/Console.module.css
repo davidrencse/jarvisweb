@@ -1,0 +1,17 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--inverse);
+  color: var(--on-inverse);
+}
+
+.stage {
+  margin-top: var(--space-8);
+}
+
+.note {
+  max-width: var(--measure);
+  margin-top: var(--space-5);
+  color: var(--on-inverse-2);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}

@@ -1,4 +1,4 @@
-export type RouteId = "local" | "simple" | "medium" | "complex";
+export type RouteId = "free" | "interpret" | "agent" | "build";
 
 export type Route = {
   id: RouteId;
@@ -15,38 +15,38 @@ export type Example = {
 
 export const ROUTES: Route[] = [
   {
-    id: "local",
-    name: "Local",
-    when: "A briefing your notes can answer.",
-    runs: "Answered from your notes with no model at all. About 20 ms, and it works offline.",
-    cost: "free",
+    id: "free",
+    name: "No model",
+    when: "A fixed phrase, or a command it can read exactly one way.",
+    runs: "Instant answers and a strict parser that turns the request into a typed command. It works offline.",
+    cost: "0 tokens",
   },
   {
-    id: "simple",
-    name: "Simple",
-    when: "A plain question.",
-    runs: "One fast run on your plan’s lightest model.",
+    id: "interpret",
+    name: "Interpreter",
+    when: "Anything the parser isn’t sure about.",
+    runs: "One warm call on your ChatGPT plan turns it into checked commands or a conversation. About 1 s.",
     cost: "your plan",
   },
   {
-    id: "medium",
-    name: "Medium",
-    when: "The request names a site.",
-    runs: "A browser agent, or your own site API.",
-    cost: "your plan",
+    id: "agent",
+    name: "Agent",
+    when: "A step needs judgement inside a logged-in app or account.",
+    runs: "Handed to a browser agent after a ten-check preflight. When it says it’s done, that’s reported as its claim.",
+    cost: "its own plan",
   },
   {
-    id: "complex",
-    name: "Complex",
-    when: "The job has several parts.",
-    runs: "A planner splits it into steps for specialist agents, each on the lowest power that can do the job.",
+    id: "build",
+    name: "Build",
+    when: "The job is software work with several parts.",
+    runs: "A planner splits it into steps for specialist agents, each on the lowest tier that can do it. Nothing runs until you say so.",
     cost: "your plan",
   },
 ];
 
 export const EXAMPLES: Example[] = [
-  { text: "What’s due this week?", route: "local" },
-  { text: "Explain Belady’s anomaly.", route: "simple" },
-  { text: "Check the course page for new grades.", route: "medium" },
-  { text: "Build a dashboard for my study hours.", route: "complex" },
+  { text: "Open Spotify on the Dell.", route: "free" },
+  { text: "What did I decide about the clipboard?", route: "interpret" },
+  { text: "Play the song Kevin sent me.", route: "agent" },
+  { text: "Build a dashboard for my study hours.", route: "build" },
 ];

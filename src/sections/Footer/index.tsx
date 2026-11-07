@@ -3,10 +3,13 @@ import { Wordmark } from "../../components/Wordmark";
 import styles from "./Footer.module.css";
 
 const LINKS = [
+  { href: "#console", label: "Console" },
+  { href: "#cluster", label: "Every computer" },
   { href: "#how", label: "How it works" },
   { href: "#memory", label: "Memory" },
   { href: "#actions", label: "Actions" },
   { href: "#privacy", label: "Privacy" },
+  { href: `${import.meta.env.BASE_URL}architecture.html`, label: "Architecture" },
   { href: "#access", label: "Early access" },
 ];
 

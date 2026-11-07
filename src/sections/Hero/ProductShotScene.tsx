@@ -3,7 +3,7 @@ import { animate, motionValue } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { ease } from "../../lib/motion";
-import { CAM_DISTANCE, CAM_FOV, DEG, LIFT_PER_DEG, shotUrl, type SceneProps, type ShotTheme } from "./shot";
+import { CAM_DISTANCE, CAM_FOV, DEG, LIFT_PER_DEG, SHOT_H, SHOT_W, shotUrl, type SceneProps, type ShotTheme } from "./shot";
 import { fragmentShader, vertexShader } from "./shotShader";
 
 const LENS_RADIUS_PX = 90;
@@ -38,7 +38,7 @@ function Plane({ theme, tilt, scale, show, skipIntro, lens: lensEnabled, onReady
     const uniforms = {
       uLight: { value: null as THREE.Texture | null },
       uDark: { value: null as THREE.Texture | null },
-      uTexSize: { value: new THREE.Vector2(2880, 1800) },
+      uTexSize: { value: new THREE.Vector2(SHOT_W, SHOT_H) },
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uOn: { value: 0 },
       uAspect: { value: 1.6 },
@@ -141,7 +141,7 @@ function Plane({ theme, tilt, scale, show, skipIntro, lens: lensEnabled, onReady
       return tex;
     };
 
-    uniforms.uTexSize.value.set(hi ? 2880 : 1440, hi ? 1800 : 900);
+    uniforms.uTexSize.value.set(SHOT_W, SHOT_H);
 
     loadDark.current = () => {
       darkLoad.current ??= load("dark")

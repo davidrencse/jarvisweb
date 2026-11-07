@@ -1,0 +1,118 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.claims {
+  display: grid;
+  gap: 2px;
+}
+
+.claim {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-s);
+  text-align: left;
+  color: var(--ink-2);
+  transition: color var(--dur-base) var(--ease-out);
+}
+@media (hover: hover) {
+  .claim:hover {
+    color: var(--ink);
+  }
+}
+.claim[aria-selected="true"] {
+  color: var(--paper);
+}
+.claimPill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-s);
+  background: var(--ink);
+}
+.claimLabel {
+  position: relative;
+  font-weight: 560;
+  font-size: var(--text-sm);
+}
+.claimText {
+  position: relative;
+  font-size: var(--text-xs);
+  opacity: 0.8;
+}
+
+.term {
+  min-width: 0;
+  border-radius: var(--r-m);
+  background: var(--inverse);
+  color: var(--on-inverse);
+  overflow: hidden;
+}
+
+.termBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--inverse-line);
+}
+.cmd {
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  color: var(--on-inverse);
+  font-size: 13px;
+  scrollbar-width: none;
+}
+.copy {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--r-s);
+  color: var(--on-inverse-2);
+}
+.copy:hover {
+  color: var(--on-inverse);
+}
+
+.out {
+  min-height: 210px;
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  color: var(--on-inverse-2);
+  font-size: 12.5px;
+  line-height: 1.7;
+  white-space: pre;
+  scrollbar-width: thin;
+  scrollbar-color: var(--inverse-track) transparent;
+}
+
+.caret {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  margin-left: 1px;
+  vertical-align: -2px;
+  background: var(--on-inverse);
+}
+
+.meta {
+  padding: 0 var(--space-4) var(--space-4);
+  color: #8d8d89;
+  font-size: var(--text-xs);
+}

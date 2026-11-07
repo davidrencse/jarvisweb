@@ -3,6 +3,8 @@ import { Nav } from "./components/Nav";
 import { ScrollIsland } from "./components/scroll-island";
 import { interceptHashLinks, scrollToId } from "./lib/scroll";
 import Hero from "./sections/Hero";
+import Console from "./sections/Console";
+import Cluster from "./sections/Cluster";
 import Voice from "./sections/Voice";
 import Pipeline from "./sections/Pipeline";
 import Memory from "./sections/Memory";
@@ -16,25 +18,24 @@ import EarlyAccess from "./sections/EarlyAccess";
 import Footer from "./sections/Footer";
 
 const loadTerminal = () => import("./sections/Terminal");
-const loadMarkets = () => import("./sections/Markets");
 const Terminal = lazy(loadTerminal);
-const Markets = lazy(loadMarkets);
 
 /** Holds the anchor and the space while a below-the-fold section's code loads. */
-function Reserve({ id, height, band = false }: { id: string; height: number; band?: boolean }) {
-  return <section id={id} aria-busy="true" style={{ minHeight: height, background: band ? "var(--paper-2)" : undefined }} />;
+function Reserve({ id, height }: { id: string; height: number }) {
+  return <section id={id} aria-busy="true" style={{ minHeight: height }} />;
 }
 
 const TOPICS = [
   { id: "terminal", title: "The terminal" },
-  { id: "markets", title: "Markets" },
+  { id: "console", title: "The console" },
+  { id: "cluster", title: "Every computer" },
   { id: "voice", title: "Voice check" },
   { id: "how", title: "How it works" },
-  { id: "memory", title: "Memory and tasks" },
+  { id: "memory", title: "Memory" },
   { id: "knowledge", title: "Knowledge engine" },
   { id: "actions", title: "Actions" },
   { id: "cost", title: "Cost and routing" },
-  { id: "everywhere", title: "Every machine" },
+  { id: "everywhere", title: "Ways to use it" },
   { id: "privacy", title: "Privacy" },
   { id: "faq", title: "Questions" },
 ];
@@ -46,7 +47,7 @@ export default function App() {
     const id = decodeURIComponent(location.hash.slice(1));
     if (!id) return;
     let live = true;
-    Promise.all([loadTerminal(), loadMarkets()]).then(() =>
+    loadTerminal().then(() =>
       requestAnimationFrame(() => requestAnimationFrame(() => live && scrollToId(id, { instant: true }))),
     );
     return () => {
@@ -65,9 +66,8 @@ export default function App() {
         <Suspense fallback={<Reserve id="terminal" height={1400} />}>
           <Terminal />
         </Suspense>
-        <Suspense fallback={<Reserve id="markets" height={2000} band />}>
-          <Markets />
-        </Suspense>
+        <Console />
+        <Cluster />
         <Voice />
         <Pipeline />
         <Memory />

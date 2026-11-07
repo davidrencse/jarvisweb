@@ -12,7 +12,7 @@ export default function Actions() {
           id="actions-title"
           layout="split"
           title={"Hands, with\nyour permission."}
-          lede="Ask it to open an app or get something done on the web. It drives a real browser in its own profile, and stops to ask before anything that sends, buys, posts or deletes."
+          lede="Ask it to open an app, set the volume or get something done on the web, on whichever machine you mean. Every action is checked afterwards, and anything that sends, buys, posts or deletes waits for you."
         />
 
         <RunDemo />

@@ -64,7 +64,7 @@ export type Station = {
   readout: ReadoutDef;
 };
 
-/** One frame bar per 30 ms: syllable-shaped swells with a little grain, as a percentage of the bar row. */
+/** One frame bar per 30 ms: syllable-shaped swells with a little grain, as a percentage of the bar row. */
 const frames = Array.from({ length: 64 }, (_, i) => {
   const syllable = Math.abs(Math.sin(i * 0.32 + 0.4));
   const swell = 0.55 + 0.45 * Math.sin(i * 0.1 + 1.2) ** 2;
@@ -78,27 +78,28 @@ export const stations: Station[] = [
     name: "Hear",
     tag: "on device",
     sentence:
-      "It listens in 30 ms frames. Before a single word is transcribed, a voiceprint check asks whether it's you.",
+      "It listens in 30 ms frames and checks the voice against yours while it transcribes. A stranger’s words are dropped unread.",
     readout: {
       kind: "hear",
-      title: "30 ms frames",
+      title: "30 ms frames",
       frames,
-      score: 0.74,
-      threshold: 0.45,
+      score: 0.42,
+      threshold: 0.36,
       action: "transcribe",
     },
   },
   {
     id: "decide",
     name: "Decide",
-    tag: "on device",
-    sentence: "A router picks the lightest path with plain rules instead of a model call, so deciding costs nothing.",
+    tag: "0 tokens",
+    sentence:
+      "Fixed phrases first, then a strict parser that only accepts a request it can read exactly one way. A model is called only when the rules can’t decide.",
     readout: {
       kind: "decide",
-      title: "router",
-      request: "what's due this week?",
-      routes: ["local", "simple", "medium", "complex"],
-      picked: "local",
+      title: "cascade",
+      request: "open spotify on the other one",
+      routes: ["instant", "parser", "interpreter", "agent"],
+      picked: "parser",
       note: "no model call",
     },
   },
@@ -106,42 +107,43 @@ export const stations: Station[] = [
     id: "remember",
     name: "Remember",
     tag: "on device",
-    sentence: "It pulls up to four relevant notes from your vault, and says nothing when nothing matches well.",
+    sentence:
+      "It recalls what matters from memory: the last 20 minutes of talk, open loops, and lessons from times you corrected it.",
     readout: {
       kind: "remember",
-      title: "vault recall",
+      title: "recall",
       notes: [
-        { path: "courses/operating-systems.md", score: 0.91 },
-        { path: "calendar.md", score: 0.77 },
-        { path: "projects/drone-blueprint.md", score: 0.52 },
+        { path: "lesson:20261105:c19f07", score: 0.88 },
+        { path: "preference:20261102:77ad30", score: 0.71 },
+        { path: "fact:20261103:4be21a", score: 0.34 },
       ],
-      footnote: "abstains under 45% of the best match",
+      footnote: "“the other one” = the Dell",
     },
   },
   {
     id: "think",
     name: "Think",
-    tag: "your subscription",
+    tag: "only if needed",
     sentence:
-      "The answer comes from the ChatGPT or Claude plan you already have, through its own app, so no API meter is running.",
+      "When the rules can’t decide, one warm call on your ChatGPT plan reads the request in about a second. If ChatGPT hits its limit, Claude takes over.",
     readout: {
       kind: "think",
       title: "your plan",
-      parts: ["brain", "warm process", "low effort"],
+      parts: ["ChatGPT", "warm lane", "Claude stand-in"],
       seconds: 1.1,
     },
   },
   {
     id: "act",
     name: "Act",
-    tag: "your apps",
+    tag: "any machine",
     sentence:
-      "Asked to do something, it opens apps or drives a real browser, and asks you before any step that changes things.",
+      "The command goes to the machine you meant as a signed job and is checked on screen afterwards. Anything with consequences waits for your yes.",
     readout: {
       kind: "act",
-      title: "tool calls",
-      done: { tool: "open_app", arg: "spotify" },
-      pending: { tool: "browser_click", arg: '"Send"', state: "waiting for you" },
+      title: "commands",
+      done: { tool: "open_app", arg: "Spotify · dell · observed" },
+      pending: { tool: "close_app", arg: "Chrome · dell", state: "waiting for you" },
     },
   },
   {
@@ -149,27 +151,24 @@ export const stations: Station[] = [
     name: "Speak",
     tag: "on device",
     sentence:
-      "A voice model on your laptop speaks the reply sentence by sentence, so it starts talking before it has finished thinking.",
+      "A voice on your laptop speaks the reply sentence by sentence. Tables and links stay on screen; only the short lead is read aloud.",
     readout: {
       kind: "speak",
       title: "speech queue",
-      sentences: [
-        "Two things.",
-        "Your OS assignment is due Thursday at 5 pm.",
-        "Friday morning is blocked for the drone build.",
-      ],
-      note: "local voice · ~0.7 s per sentence",
+      sentences: ["On it.", "Spotify’s open on the Dell."],
+      note: "local voice · spoken lead only",
     },
   },
   {
     id: "log",
     name: "Log",
     tag: "on device",
-    sentence: "Every turn lands in a searchable memory on your disk, so next time it already knows.",
+    sentence:
+      "What it did, what it saw and what it said land in history and memory on your disk. Each night the day is distilled into facts and lessons.",
     readout: {
       kind: "log",
       title: "memory",
-      id: "reply:20261024:858794",
+      id: "reply:20261107:858794",
       searchFrom: 3,
       searchTo: 25,
     },

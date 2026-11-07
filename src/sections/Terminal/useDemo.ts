@@ -9,9 +9,9 @@ type Options = {
 };
 
 const CHAR_BRIEF = 85;
-const CHAR_CHART = 55;
+const CHAR_DO = 45;
 
-/** Plays once when the terminal first scrolls into view: types BRIEF, runs it, then BTC GP 30D. Any visitor input cancels it. */
+/** Plays once when the terminal first scrolls into view: types BRIEF, runs it, then an action on the other laptop. Any visitor input cancels it. */
 export function useDemo({ frameRef, enabled, run, setValue }: Options) {
   const inView = useInView(frameRef, { once: true, amount: 0.4 });
   const [typing, setTyping] = useState(false);
@@ -59,10 +59,10 @@ export function useDemo({ frameRef, enabled, run, setValue }: Options) {
     });
     t += 1900;
     at(t, () => setTypingNow(true));
-    t = type("BTC GP 30D", t + 40, CHAR_CHART) + 220;
+    t = type("DO open spotify on the dell", t + 40, CHAR_DO) + 220;
     at(t, () => {
       setTypingNow(false);
-      run("BTC GP 30D");
+      run("DO open spotify on the dell");
       over.current = true;
     });
 

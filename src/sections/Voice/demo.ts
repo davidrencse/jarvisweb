@@ -4,9 +4,9 @@ import { ease } from "../../lib/motion";
 export type Speaker = "you" | "stranger";
 export type Phase = "idle" | "speaking" | "checking" | "transcript" | "answering" | "ignored" | "hold";
 
-export const THRESHOLD = 0.45;
+export const THRESHOLD = 0.36;
 
-export const SCORE: Record<Speaker, number> = { you: 0.74, stranger: 0.09 };
+export const SCORE: Record<Speaker, number> = { you: 0.42, stranger: 0.05 };
 
 export const TRANSCRIPT = "Jarvis, what’s due this week?";
 
@@ -17,15 +17,15 @@ export const REPLY = [
 
 export const IGNORED = ["Speech detected.", "Not transcribed, not answered."];
 
-export const TIMINGS = ["verified 0.5 s", "heard 0.3 s", "answered 1.1 s"];
+export const TIMINGS = ["verified 0.5 s", "heard 0.6 s", "answered 1.1 s"];
 
 export const CAPTION =
-  "A simulated demo of the voice check: JARVIS scores a voice against a 0.45 threshold, answers its owner, and ignores a stranger without transcribing a word.";
+  "A simulated demo of the voice check: JARVIS scores a voice against a 0.36 threshold, answers its owner, and ignores a stranger without transcribing a word.";
 
 export const VERDICT_TEXT: Record<Speaker, string> = {
-  you: "Voice verified. Score 0.74 against a threshold of 0.45, so it’s you and JARVIS answered.",
+  you: "Voice verified. Score 0.42 against a threshold of 0.36, so it’s you and JARVIS answered.",
   stranger:
-    "Voice not verified. Score 0.09 against a threshold of 0.45, so it’s not you and the speech was not transcribed or answered.",
+    "Voice not verified. Score 0.05 against a threshold of 0.36, so it’s not you and the speech was not transcribed or answered.",
 };
 
 export const ORDER: Record<Phase, number> = {

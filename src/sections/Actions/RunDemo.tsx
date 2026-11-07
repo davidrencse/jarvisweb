@@ -53,7 +53,7 @@ export function RunDemo() {
       <Spotlight>
       <figure ref={frameRef} className={styles.frame}>
         <figcaption className="sr-only">
-          A simulated run of three example requests, showing each tool JARVIS calls and where it stops to ask.
+          A simulated run of three example requests, showing each step JARVIS takes and where it stops to ask.
         </figcaption>
 
         <div className={styles.strip}>

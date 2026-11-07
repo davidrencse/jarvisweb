@@ -7,15 +7,15 @@ import styles from "./TerminalScene.module.css";
 type Line = { kind: "cmd" | "out" | "note"; text: string; key?: string };
 
 const SCRIPT: Line[] = [
-  { kind: "cmd", text: 'jarvis ask "open spotify"' },
-  { kind: "out", text: "Spotify’s open." },
+  { kind: "cmd", text: 'jarvis ask "open spotify on the dell"' },
+  { kind: "out", text: "Spotify’s open on the Dell." },
   { kind: "cmd", text: "jarvis vault brief" },
   { kind: "out", key: "due", text: "OS assignment, Thursday 5 pm" },
   { kind: "out", key: "plan", text: "Friday morning, drone build" },
   { kind: "out", key: "next", text: "Pick a flight controller" },
   { kind: "note", text: "from your notes, no model, about 20 ms" },
-  { kind: "cmd", text: 'jarvis task add "Buy printer paper" --due friday' },
-  { kind: "out", key: "added", text: "Buy printer paper, due Friday" },
+  { kind: "cmd", text: "jarvis cluster status" },
+  { kind: "out", key: "dell", text: "node · online · seen 2 s ago" },
   { kind: "cmd", text: 'jarvis kb ask "how often does the review routine run?"' },
   { kind: "out", text: "The sources disagree. Waiting for your ruling." },
   { kind: "out", key: "source-001", text: "daily at 02:00" },

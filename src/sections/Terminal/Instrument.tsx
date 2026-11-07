@@ -1,7 +1,6 @@
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { useCallback, useId, useRef, useState, type KeyboardEvent } from "react";
 import { Spotlight } from "../../components/Spotlight";
-import { spring } from "../../lib/motion";
 import { CommandBar } from "./CommandBar";
 import { FKEYS, run, seed } from "./functions";
 import { KeyBar } from "./KeyBar";
@@ -10,41 +9,9 @@ import { Swap } from "./motion";
 import { OutputBody } from "./OutputBody";
 import { Pane, type PaneId } from "./Pane";
 import { parse } from "./parser";
-import { SPANS, type AddedTask, type Result } from "./types";
+import type { ActionRun, AddedTask, Result } from "./types";
 import { useDemo } from "./useDemo";
 import styles from "./Terminal.module.css";
-
-type Chip = NonNullable<Result["chip"]>;
-
-function SpanChips({ chip, onRun }: { chip: Chip; onRun: (command: string) => void }) {
-  const uid = useId();
-  return (
-    <motion.div
-      className={styles.chips}
-      role="group"
-      aria-label="Chart window"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.1 } }}
-    >
-      {SPANS.map((s) => {
-        const on = s === chip.active;
-        return (
-          <button
-            key={s}
-            type="button"
-            className={styles.chipBtn}
-            aria-pressed={on}
-            onClick={() => onRun(`${chip.ticker} GP ${s}`)}
-          >
-            {on ? <motion.span layoutId={`${uid}-span`} className={styles.chipPill} transition={spring.snappy} /> : null}
-            <span className={styles.chipLabel}>{s}</span>
-          </button>
-        );
-      })}
-    </motion.div>
-  );
-}
 
 export function Instrument() {
   const uid = useId();
@@ -52,6 +19,7 @@ export function Instrument() {
   const frameRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const added = useRef<AddedTask[]>([]);
+  const actions = useRef<ActionRun[]>([]);
   const counter = useRef(0);
 
   const [value, setValue] = useState("");
@@ -63,7 +31,8 @@ export function Instrument() {
     const cmd = parse(raw);
     if (!cmd) return;
     if (cmd.fn === "TASK") added.current = [...added.current, { text: cmd.text, due: cmd.due }];
-    const outcome = run(cmd, { added: added.current });
+    const { run: ran, ...outcome } = run(cmd, { added: added.current, actions: actions.current });
+    if (ran) actions.current = [...actions.current, ran];
     counter.current += 1;
     const id = String(counter.current);
     setResult((prev) => ({ ...outcome, id, monitor: outcome.monitor ?? prev.monitor }));
@@ -130,11 +99,6 @@ export function Instrument() {
             onActivate={setPane}
             className={styles.paneOut}
             bodyClassName={styles.out}
-            extra={
-              <AnimatePresence initial={false}>
-                {result.chip ? <SpanChips key="chips" chip={result.chip} onRun={runVisitor} /> : null}
-              </AnimatePresence>
-            }
           >
             <Swap id={result.id}>
               <OutputBody output={result.output} onRun={runVisitor} />

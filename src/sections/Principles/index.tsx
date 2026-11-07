@@ -6,20 +6,32 @@ const PRINCIPLES = [
   {
     statement: "Your voice stays on your laptop.",
     mechanism:
-      "Voice detection, the voiceprint check and transcription all run locally, and a stranger’s speech is never transcribed.",
+      "Voice detection, the voiceprint check and transcription all run locally, and a stranger’s words are dropped unread.",
+  },
+  {
+    statement: "Most requests never reach a model.",
+    mechanism:
+      "Fixed phrases and a strict parser settle them on your machine, at 0 tokens. A model is asked only when the rules can’t decide.",
+  },
+  {
+    statement: "Your machines only talk to each other.",
+    mechanism:
+      "The hub listens on loopback, jobs are signed and travel over SSH with pinned keys, and a node refuses code that doesn’t match the main.",
+  },
+  {
+    statement: "It asks before it acts, and checks after.",
+    mechanism:
+      "Buying, sending, posting and deleting wait for your yes. Every action is read back from the screen, and what can’t be seen is reported, not claimed.",
   },
   {
     statement: "Your notes are never rewritten.",
     mechanism:
-      "Writes only add, refuse any file that changed since it was read, and every one is logged so you can undo it.",
+      "JARVIS reads your vault for recall and briefings with writing switched off. Turn writing on and it only adds lines, refuses any file that changed since it was read, and logs each one so you can undo it.",
   },
   {
-    statement: "The console answers only to this machine.",
-    mechanism: "It listens on loopback only, rejects foreign hosts and requires a header on every change.",
-  },
-  {
-    statement: "It asks before it acts.",
-    mechanism: "Buying, sending, posting, deleting and submitting forms all wait for your yes.",
+    statement: "Its shell is boxed in.",
+    mechanism:
+      "On Linux, terminal commands the brain runs go through bubblewrap: 143 paths hidden, including secrets and browser profiles, 61 read-only, and JARVIS’s own code can’t be edited.",
   },
   {
     statement: "A cloud voice is your choice.",

@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { memo, type CSSProperties, type ReactNode } from "react";
 import { ease } from "../../lib/motion";
-import { Chart } from "./Chart";
 import { useStagger } from "./motion";
 import type { Bar, Cell, Fact, Group, NoteHit, Output } from "./types";
 import styles from "./Output.module.css";
@@ -257,13 +256,6 @@ export const OutputBody = memo(function OutputBody({ output, onRun }: Props) {
       return <Groups groups={output.groups} foot={output.foot} />;
     case "table":
       return <Table output={output} onRun={onRun} />;
-    case "chart":
-      return (
-        <div className={styles.stack}>
-          <Chart chart={output.chart} />
-          {output.foot ? <p className={styles.foot}>{output.foot}</p> : null}
-        </div>
-      );
     case "notes":
       return <Notes items={output.items} foot={output.foot} />;
     case "bars":

@@ -43,6 +43,15 @@ A Braun-white instrument. Pure white paper, ink, three greys and 1px hairlines; 
   - `shimmer-button`: the nav and island CTA.
 - Tailwind v4 is present only for these components. `src/styles/tailwind.css` maps the shadcn variables (`--background`, `--primary`, `--border`, …) onto the tokens, and `.inverse` remaps them for the black band. `base.css` lives in `@layer base`, so Tailwind utilities override it and CSS Modules override both.
 
+## Screenshots and WebGL
+
+- `components/vision/VisionViewer`: the real console captures on the black band, rendered by one full-frame shader (`vision/shader.ts`). Switching views runs a top-down scan that paints the incoming capture's Sobel edges before its pixels; the pointer lens magnifies 1.75× and flips between edge and pixel view; "Edge view" turns the whole frame into an edge map with a slow detector sweep; a numbered region focuses by dimming everything outside it to edges. No hue is added: edges are white on black. Falls back to the plain image with CSS dimming when WebGL2 is missing or fails; reduced motion skips the scan and sweep.
+- Regions are transcribed in source pixels in `sections/Console/shots.ts` and `architecture/systemShots.ts`.
+
+## Architecture page (`architecture.html`)
+
+Second Vite entry (`src/architecture/`). Request-path tracer (SVG, solid = free, dashed = subscription quota, double outline = waits for you; labelled Simulated), main/node topology with the SSH tunnel lanes, module map (bars sized by lines), the System page in the vision viewer, and real CLI output with copyable commands.
+
 ## Browser surfaces
 
 Selection is ink on paper (inverted on the black band); caret is ink; scrollbars use `--line-strong`; focus is a 2px ink outline offset 3px; numbers in data are tabular.

@@ -11,14 +11,14 @@ export default function Cost() {
           id="cost-title"
           layout="stack"
           title={"It thinks on what\nyou already pay for."}
-          lede="JARVIS signs in with the ChatGPT or Claude plan you already have and works within its normal limits. There’s no API key to fund and no per-token bill."
+          lede="Cheapest path first. Plain rules settle most requests without a model, and the rest run on the ChatGPT or Claude plan you already have. There’s no API key to fund and no per-token bill."
         />
 
         <Router />
 
         <FadeIn>
           <p className={styles.close}>
-            Routing is a handful of plain rules, so deciding where a request goes never costs a thing.
+            If ChatGPT hits its usage limit, Claude answers until the window resets, so a busy day never stops it.
           </p>
         </FadeIn>
       </div>

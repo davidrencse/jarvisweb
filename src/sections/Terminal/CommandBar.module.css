@@ -170,17 +170,6 @@
   gap: var(--space-3);
 }
 
-.chip {
-  padding: 4px 8px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  color: var(--ink-2);
-  cursor: help;
-}
 
 .sim {
   font-family: var(--font-mono);

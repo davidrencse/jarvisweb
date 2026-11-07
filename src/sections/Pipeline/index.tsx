@@ -59,7 +59,7 @@ export default function Pipeline() {
           id="how-title"
           layout="stack"
           title={"What happens when\nyou say “Jarvis”"}
-          lede="One request passes through seven stations. Everything except the thinking can run on your laptop."
+          lede="One request passes through seven stations. Most never need a model, and everything except the thinking runs on your own laptops."
           className={styles.head}
         />
         <div className={styles.body}>

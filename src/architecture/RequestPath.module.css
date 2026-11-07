@@ -1,0 +1,414 @@
+.wrap {
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--r-m);
+  background: var(--inverse);
+  color: var(--on-inverse);
+  overflow: hidden;
+}
+
+/* Controls */
+
+.controls {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--inverse-line);
+}
+
+.form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--r-pill);
+  background: var(--inverse-2);
+  color: var(--on-inverse);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  caret-color: var(--on-inverse);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+.input::placeholder {
+  color: #8d8d89;
+}
+.input:focus-visible {
+  outline: none;
+  border-color: var(--on-inverse);
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--r-pill);
+  background: var(--on-inverse);
+  color: var(--inverse);
+  font-size: var(--text-sm);
+  font-weight: 560;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.go:active {
+  transform: scale(0.97);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset {
+  height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--r-pill);
+  color: var(--on-inverse-2);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+@media (hover: hover) {
+  .preset:hover {
+    color: var(--on-inverse);
+    border-color: var(--inverse-track);
+  }
+}
+.preset[aria-pressed="true"] {
+  background: var(--on-inverse);
+  border-color: var(--on-inverse);
+  color: var(--inverse);
+}
+
+/* Board + readout */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.board {
+  min-width: 0;
+  padding: var(--space-4);
+}
+
+.scroller {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--inverse-track) transparent;
+}
+
+.svg {
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  font-family: var(--font-sans);
+}
+
+.columns text {
+  fill: #8d8d89;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.edge {
+  fill: none;
+  stroke: var(--inverse-track);
+  stroke-width: 1;
+}
+.edge[data-model="true"] {
+  stroke-dasharray: 4 4;
+}
+
+.lit {
+  fill: none;
+  stroke: var(--on-inverse);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.packet {
+  fill: var(--on-inverse);
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+/* Nodes */
+
+.box {
+  fill: var(--inverse-2);
+  stroke: var(--inverse-line);
+  stroke-width: 1;
+  transition:
+    fill 360ms var(--ease-out),
+    stroke 360ms var(--ease-out);
+}
+.node[data-kind="model"] .box {
+  stroke: var(--inverse-track);
+  stroke-dasharray: 5 4;
+}
+.outer {
+  fill: none;
+  stroke: var(--inverse-track);
+  stroke-width: 1;
+  transition: stroke 360ms var(--ease-out);
+}
+.node[data-kind="input"] .box,
+.node[data-kind="target"] .box,
+.node[data-kind="store"] .box {
+  fill: var(--inverse);
+}
+
+.label {
+  fill: var(--on-inverse-2);
+  font-size: 13.5px;
+  font-weight: 560;
+  transition: fill 360ms var(--ease-out);
+}
+.sub {
+  fill: #7d7d79;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  transition: fill 360ms var(--ease-out);
+}
+.num {
+  fill: #7d7d79;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: fill 360ms var(--ease-out);
+}
+.flag {
+  fill: var(--on-inverse-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.node[data-state="pass"] .box {
+  stroke: var(--on-inverse-2);
+  stroke-dasharray: none;
+}
+.node[data-state="pass"] .label {
+  fill: var(--on-inverse);
+}
+.node[data-state="pass"] .sub,
+.node[data-state="pass"] .num {
+  fill: var(--on-inverse-2);
+}
+
+.node[data-state="hit"] .box,
+.node[data-state="wait"] .box {
+  fill: var(--on-inverse);
+  stroke: var(--on-inverse);
+  stroke-dasharray: none;
+}
+.node[data-state="hit"] .label,
+.node[data-state="wait"] .label,
+.node[data-state="hit"] .flag,
+.node[data-state="wait"] .flag {
+  fill: var(--inverse);
+}
+.node[data-state="hit"] .sub,
+.node[data-state="hit"] .num,
+.node[data-state="wait"] .sub,
+.node[data-state="wait"] .num {
+  fill: #3d3d3b;
+}
+.node[data-state="wait"] .outer {
+  stroke: var(--on-inverse);
+}
+
+.node[data-state="miss"] .box {
+  stroke: var(--on-inverse-2);
+  stroke-dasharray: 2 3;
+}
+.node[data-state="miss"] .label {
+  fill: var(--on-inverse-2);
+  text-decoration: line-through;
+}
+
+.node[data-current="true"] .box {
+  animation: pulse 1.2s var(--ease-out) 1;
+}
+@keyframes pulse {
+  0% {
+    stroke-width: 4;
+  }
+  100% {
+    stroke-width: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .node[data-current="true"] .box {
+    animation: none;
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-3);
+  color: var(--on-inverse-2);
+  font-size: var(--text-xs);
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.keySolid,
+.keyDashed,
+.keyDouble {
+  width: 22px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--on-inverse-2);
+}
+.keyDashed {
+  border-style: dashed;
+}
+.keyDouble {
+  border: 3px double var(--on-inverse-2);
+}
+.sim {
+  margin-left: auto;
+  color: #8d8d89;
+}
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-left: 1px solid var(--inverse-line);
+  background: var(--inverse-2);
+}
+@media (max-width: 1080px) {
+  .readout {
+    border-left: 0;
+    border-top: 1px solid var(--inverse-line);
+  }
+}
+
+.req {
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border-bottom: 1px solid var(--inverse-line);
+}
+.reqQuote {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 560;
+  letter-spacing: -0.015em;
+}
+
+.steps {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  max-height: 520px;
+  padding: var(--space-3) var(--space-4);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--inverse-track) transparent;
+}
+@media (max-width: 1080px) {
+  .steps {
+    max-height: 340px;
+  }
+}
+
+.stepRow {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) 0 var(--space-2) var(--space-3);
+  border-left: 1px solid var(--inverse-track);
+}
+.stepRow[data-state="hit"],
+.stepRow[data-state="wait"] {
+  border-left-color: var(--on-inverse);
+}
+.stepName {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 560;
+}
+.badge {
+  padding: 1px 6px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--inverse-track);
+  color: var(--on-inverse-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.stepRow[data-state="hit"] .badge,
+.stepRow[data-state="wait"] .badge {
+  background: var(--on-inverse);
+  border-color: var(--on-inverse);
+  color: var(--inverse);
+}
+.stepNote {
+  color: var(--on-inverse-2);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: 1px solid var(--inverse-line);
+}
+.summary > div {
+  display: grid;
+  gap: 2px;
+}
+.sumKey {
+  color: #8d8d89;
+  font-size: var(--text-xs);
+}
+.sumVal {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.replay {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--inverse-line);
+  border-radius: 50%;
+  color: var(--on-inverse-2);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+.replay:hover {
+  color: var(--on-inverse);
+  border-color: var(--inverse-track);
+}

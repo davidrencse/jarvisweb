@@ -4,11 +4,11 @@ import { NoteDemo } from "./NoteDemo";
 import styles from "./Memory.module.css";
 
 const KNOWS = [
-  "Courses in progress",
-  "Active projects and their next step",
-  "Deadlines in the next 14 days",
-  "Today’s and tomorrow’s agenda",
-  "Today’s priorities",
+  "The last 20 minutes of conversation",
+  "Loops you left open in the past two weeks",
+  "Facts and preferences that match the request",
+  "Lessons from the times you corrected it",
+  "Your deadlines and agenda, when a vault is connected",
 ];
 
 export default function Memory() {
@@ -18,15 +18,15 @@ export default function Memory() {
         <SectionHead
           id="memory-title"
           layout="split"
-          title={"It remembers\nthrough your notes."}
-          lede="JARVIS reads your Obsidian vault the way you wrote it: courses, projects, deadlines, today’s plan. When it writes, it only adds. It never deletes, moves or rewrites a line of yours."
+          title={"It remembers\nwhat you tell it."}
+          lede="Every turn is kept on your disk, searchable by keyword and by meaning. Each night JARVIS distils the day into facts, preferences, open loops and lessons. Connect an Obsidian vault and it reads your notes too, without rewriting them."
         />
 
         <div className={styles.layout}>
           <div className={styles.known}>
             <div>
               <FadeIn>
-                <h3 className={styles.knownTitle}>What it knows when you start talking</h3>
+                <h3 className={styles.knownTitle}>What it brings to every answer</h3>
               </FadeIn>
               <ul className={styles.knownList} role="list">
                 {KNOWS.map((item, i) => (

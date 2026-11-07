@@ -10,8 +10,8 @@ export default function Terminal() {
         <SectionHead
           id="terminal-title"
           layout="stack"
-          title={"One command line\nfor your whole life."}
-          lede="Bloomberg-style shortcuts for everything JARVIS knows, each answered with a plain-English line, so you never have to learn the codes. Or skip the typing and ask out loud."
+          title={"One command line\nfor every machine."}
+          lede="Short codes for everything JARVIS can see and do across your computers. Each answer ends in a plain-English line, so you never have to learn the codes. Or skip the typing and say “Jarvis.”"
         />
 
         <FadeIn amount={0.15}>

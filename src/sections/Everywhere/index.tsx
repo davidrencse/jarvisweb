@@ -21,8 +21,8 @@ const TABS = [
 type TabId = (typeof TABS)[number]["id"];
 
 const FACTS = [
-  "Clipboard and one mouse shared across both laptops.",
-  "Starts with your computer and listens from login.",
+  "One clipboard and one mouse across your laptops on the same network.",
+  "Starts at login and listens from the moment you sign in.",
 ];
 
 export default function Everywhere() {
@@ -54,8 +54,8 @@ export default function Everywhere() {
         <SectionHead
           id="everywhere-title"
           layout="split"
-          title={"On every machine\nyou use."}
-          lede="Windows and Arch Linux, from the same install. Talk to it, type to it in a terminal, or call it over any app with Alt+1."
+          title={"Talk, type,\nor press Alt+1."}
+          lede="Windows and Arch Linux today, from the same install. Talk to it, type to it in a terminal, open the console, or call it over any app with Alt+1."
         />
 
         <FadeIn>

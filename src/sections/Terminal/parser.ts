@@ -1,32 +1,14 @@
-import { isTicker, type Ticker } from "./coins";
-import { SPANS, type Span } from "./types";
-
-const PLAIN = ["HELP", "BRIEF", "DUE", "TOP", "BT", "CRED", "DEV"] as const;
+const PLAIN = ["HELP", "BRIEF", "DUE", "HIST", "CRED", "DEV"] as const;
 type Plain = (typeof PLAIN)[number];
 
 export type Command =
   | { fn: Plain; echo: string }
   | { fn: "TASK"; echo: string; text: string; due: string | null }
-  | { fn: "NOTE"; echo: string; query: string }
+  | { fn: "DO"; echo: string; request: string }
+  | { fn: "MEM"; echo: string; query: string }
   | { fn: "KB"; echo: string; question: string }
   | { fn: "ASK"; echo: string; text: string }
-  | { fn: "GP"; echo: string; ticker: Ticker; span: Span }
-  | { fn: "DES"; echo: string; ticker: Ticker }
   | { fn: "ERROR"; echo: string; message: string; plain: string; tries: string[] };
-
-const SPAN_ALIASES: Record<string, Span> = {
-  "1D": "1D",
-  "24H": "1D",
-  "7D": "7D",
-  "1W": "7D",
-  "30D": "30D",
-  "1M": "30D",
-  "90D": "90D",
-  "3M": "90D",
-  "1Y": "1Y",
-  "12M": "1Y",
-  "365D": "1Y",
-};
 
 const isPlain = (s: string): s is Plain => (PLAIN as readonly string[]).includes(s);
 
@@ -84,16 +66,29 @@ export function parse(input: string): Command | null {
     return { fn: "TASK", echo: `TASK ADD ${body}${due ? ` --due ${due.toLowerCase()}` : ""}`, text: body, due };
   }
 
-  if (code === "NOTE") {
-    if (!args) {
+  if (code === "DO") {
+    const request = unquote(args);
+    if (!request) {
       return error(
-        "NOTE",
-        "NOTE needs a few words to look for. Try NOTE os midterm.",
-        "NOTE searches your notes, so give it a few words to look for.",
-        ["NOTE os midterm"],
+        "DO",
+        "DO needs something to do. Try DO open spotify on the dell.",
+        "DO runs an action on one of your machines, so say what to do after it.",
+        ["DO open spotify on the dell", "DO volume 30"],
       );
     }
-    return { fn: "NOTE", echo: `NOTE ${args}`, query: args };
+    return { fn: "DO", echo: `DO ${request}`, request };
+  }
+
+  if (code === "MEM") {
+    if (!args) {
+      return error(
+        "MEM",
+        "MEM needs a few words to look for. Try MEM lan mouse.",
+        "MEM searches what JARVIS remembers, so give it a few words to look for.",
+        ["MEM lan mouse"],
+      );
+    }
+    return { fn: "MEM", echo: `MEM ${args}`, query: args };
   }
 
   if (code === "KB") {
@@ -112,68 +107,17 @@ export function parse(input: string): Command | null {
     if (!args) {
       return error(
         "ASK",
-        "ASK needs something to ask. Try ASK explain Belady’s anomaly.",
-        "ASK hands any question to the assistant, so type it after the word ASK.",
-        ["ASK explain Belady’s anomaly"],
+        "ASK needs something to ask. Try ASK what did I decide about the clipboard?",
+        "ASK shows where a request would go and what it would cost, so type it after the word ASK.",
+        ["ASK what did I decide about the clipboard?"],
       );
     }
     return { fn: "ASK", echo: `ASK ${args}`, text: args };
   }
 
-  if (code === "DES") {
-    const t = rest[0]?.toUpperCase();
-    if (!t) {
-      return error("DES", "DES needs a ticker. Try DES SOL.", "DES describes a coin, so add its ticker, like DES SOL.", ["DES SOL"]);
-    }
-    if (!isTicker(t)) return unknownTicker(`DES ${t}`, t);
-    return { fn: "DES", echo: `DES ${t}`, ticker: t };
-  }
-
-  if (code === "GP") {
-    const t = rest[0]?.toUpperCase();
-    if (!t) return error("GP", "GP needs a ticker first. Try BTC GP 30D.", "GP draws a price chart. Put the ticker first, like BTC GP 30D.", ["BTC GP 30D"]);
-    return chart(t, rest[1], rest.length > 2);
-  }
-
-  if (isTicker(code)) {
-    if (rest.length === 0) return chart(code, undefined, false);
-    if (rest[0].toUpperCase() === "GP") return chart(code, rest[1], rest.length > 2);
-    return error(
-      `${code} ${args}`,
-      `${code} on its own shows a chart. Try ${code} GP 30D.`,
-      `After a ticker, type GP and a window, like ${code} GP 30D.`,
-      [`${code} GP 30D`],
-    );
-  }
-
-  if (rest[0]?.toUpperCase() === "GP") return unknownTicker(text, code);
-
   return error(
     head,
     `No function called ${head.toUpperCase()}. Type HELP to see them all.`,
-    "That isn’t one of the shortcuts, so nothing ran. HELP lists them all. To ask in your own words, start with ASK, or just say “Jarvis.”",
-  );
-}
-
-function chart(ticker: string, win: string | undefined, extra: boolean): Command {
-  if (!isTicker(ticker)) return unknownTicker(ticker, ticker);
-  const span = win ? SPAN_ALIASES[win.toUpperCase()] : "30D";
-  if (!span || extra) {
-    return error(
-      `${ticker} GP ${win ?? ""}`.trim(),
-      `${win ? win.toUpperCase() : "That"} isn’t a window here. Use ${SPANS.join(", ")}.`,
-      `Charts come in five windows: ${SPANS.join(", ")}. Try ${ticker} GP 30D.`,
-      [`${ticker} GP 30D`],
-    );
-  }
-  return { fn: "GP", echo: `${ticker} GP ${span}`, ticker, span };
-}
-
-function unknownTicker(echo: string, t: string): Command {
-  return error(
-    echo,
-    `No ticker called ${t}. Try BTC, ETH or SOL.`,
-    "JARVIS doesn’t track that ticker in this demo, so nothing ran. BTC, ETH and SOL are good places to start.",
-    ["BTC GP 30D", "ETH GP 7D"],
+    "That isn’t one of the shortcuts, so nothing ran. HELP lists them all. To run an action in your own words, start with DO, or just say “Jarvis.”",
   );
 }

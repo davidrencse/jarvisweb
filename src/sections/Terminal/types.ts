@@ -1,6 +1,3 @@
-export const SPANS = ["1D", "7D", "30D", "90D", "1Y"] as const;
-export type Span = (typeof SPANS)[number];
-
 export type FKey = "F1" | "F2" | "F3" | "F4" | "F5";
 
 /** A table cell; an object makes it a button that runs `run`. */
@@ -11,17 +8,6 @@ export type Group = { heading: string; lines: Line[] };
 export type NoteHit = { path: string; score: number; excerpt: [string, string] };
 export type Bar = { label: string; sub: string; left: number; readout: string; detail?: string };
 export type Fact = [label: string, value: string];
-
-export type Point = { t: number; v: number };
-export type ChartData = {
-  ticker: string;
-  name: string;
-  span: Span;
-  points: Point[];
-  dip: number;
-  pct: number;
-  ticks: { i: number; label: string }[];
-};
 
 export type Output =
   | { kind: "idle"; starters: string[] }
@@ -38,7 +24,6 @@ export type Output =
       rows: Cell[][];
       foot?: string;
     }
-  | { kind: "chart"; chart: ChartData; foot?: string }
   | { kind: "notes"; items: NoteHit[]; foot: string }
   | { kind: "bars"; items: Bar[]; foot?: string }
   | {
@@ -74,8 +59,6 @@ export type Result = {
   id: string;
   title: string;
   fkey: FKey | null;
-  /** Set when the output is a chart: drives the window chips. */
-  chip: { ticker: string; active: Span } | null;
   monitor: Monitor;
   output: Output;
   plain: string;
@@ -84,3 +67,6 @@ export type Result = {
 export type Outcome = Omit<Result, "id" | "monitor"> & { monitor?: Monitor };
 
 export type AddedTask = { text: string; due: string | null };
+
+/** One action run from the terminal, kept for HIST. */
+export type ActionRun = { command: string; device: string; outcome: string };

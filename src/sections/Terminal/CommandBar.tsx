@@ -191,9 +191,6 @@ export function CommandBar({ value, onValue, onRun, inputRef, typing }: Props) {
       </form>
 
       <div className={styles.meta}>
-        <span className={styles.chip} title="Markets are recon only: nothing here can place a trade.">
-          RECON ONLY
-        </span>
         <span className={styles.sim}>Simulated</span>
       </div>
       <Clock />

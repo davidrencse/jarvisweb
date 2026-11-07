@@ -16,22 +16,23 @@ export const REQUESTS: RunRequest[] = [
   {
     id: "app",
     label: "Open an app",
-    say: "Jarvis, open Spotify.",
+    say: "Jarvis, open Spotify on the Dell.",
     steps: [
-      { tool: "list_apps", text: "Checks which apps are installed." },
-      { tool: "open_app Spotify", text: "Launches Spotify." },
-      { tool: "Spoken", text: "Spotify’s open.", spoken: true },
+      { tool: "open_app Spotify · dell", text: "Read by the parser. No model needed." },
+      { tool: "signed job → dell", text: "Sent to the Dell over the cluster link." },
+      { tool: "observe", text: "Watches for a Spotify window. Seen after 2.4 s." },
+      { tool: "Spoken", text: "Spotify’s open on the Dell.", spoken: true },
     ],
   },
   {
     id: "page",
     label: "Read a page",
-    say: "Go to the course page and read me the next deadline.",
+    say: "In the agent browser, go to the course page and read me the next deadline.",
     steps: [
-      { tool: "browser_navigate", text: "Opens the course page in its own browser profile." },
-      { tool: "browser_snapshot", text: "Reads what is on the page." },
+      { tool: "browse course page", text: "Opens the page in JARVIS’s own Chrome, which you can watch in the console." },
+      { tool: "agent_browser_read", text: "Reads what is on the page as text." },
       { tool: "read", text: "Picks out the next deadline." },
-      { tool: "Spoken", text: "The next deadline is the OS assignment, Thursday at 5 pm.", spoken: true },
+      { tool: "Spoken", text: "The next deadline is the OS assignment, Thursday at 5 pm.", spoken: true },
     ],
   },
   {
@@ -39,7 +40,7 @@ export const REQUESTS: RunRequest[] = [
     label: "Something risky",
     say: "Send my draft to the study group.",
     steps: [
-      { tool: "browser_navigate", text: "Opens the message page in its own browser profile." },
+      { tool: "interpret · agent", text: "Needs a signed-in account, so it goes to the browser." },
       { tool: "browser_type", text: "Types your draft into the message." },
       { tool: 'browser_click "Send"', text: "This sends a message to 6 people.", gate: true },
     ],
@@ -47,8 +48,8 @@ export const REQUESTS: RunRequest[] = [
 ];
 
 export const GUARDRAILS = [
-  "It launches apps but never closes or kills them.",
-  "It never types your passwords. You sign in yourself.",
-  "Page content is treated as untrusted, never as instructions.",
-  "Every step that changes something waits for your approval.",
+  "Every action is checked on screen. If it can’t be seen, it’s reported as unconfirmed and never retried.",
+  "It never types passwords, 2FA codes or card numbers. You sign in yourself.",
+  "Text from web pages, notes and other agents is treated as data, never as instructions.",
+  "Sending, buying, posting, deleting and closing apps with unsaved work all wait for your yes.",
 ];

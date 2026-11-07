@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 960" width="1400" height="960" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9aa4b2"/></marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#f5b83d"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5cc8a0"/></marker>
+    <style>
+      .t{fill:#e8ecf2;font-size:14px;font-weight:600}
+      .s{fill:#9aa4b2;font-size:11.5px}
+      .h{fill:#e8ecf2;font-size:12px;letter-spacing:2px;font-weight:700}
+      .k{fill:#6b7480;font-size:11px;letter-spacing:1.5px}
+      .box{fill:#14171c;stroke:#2b313a;stroke-width:1.2}
+      .free{fill:#10201a;stroke:#2f6b55;stroke-width:1.2}
+      .model{fill:#211a0d;stroke:#7a5a1c;stroke-width:1.2}
+      .risk{fill:#26121a;stroke:#8a3550;stroke-width:1.2}
+      .zone{fill:none;stroke:#2b313a;stroke-dasharray:4 4}
+      .ln{stroke:#9aa4b2;stroke-width:1.4;fill:none}
+      .lw{stroke:#f5b83d;stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+      .lg{stroke:#5cc8a0;stroke-width:1.4;fill:none}
+    </style>
+  </defs>
+  <rect width="1400" height="960" fill="#0b0d10"/>
+
+  <text x="40" y="44" class="h" font-size="15">JARVIS · HOW A REQUEST MOVES</text>
+  <text x="40" y="66" class="s">Green runs free on this PC. Amber spends subscription quota (never pay-per-token APIs). Red waits for David.</text>
+
+  <!-- INPUTS -->
+  <rect x="30" y="92" width="250" height="560" rx="6" class="zone"/>
+  <text x="46" y="116" class="k">INPUT</text>
+  <rect x="46" y="130" width="218" height="150" rx="5" class="free"/>
+  <text x="60" y="154" class="t">Voice  "Jarvis, …"</text>
+  <text x="60" y="176" class="s">Mic → PipeWire → Silero VAD</text>
+  <text x="60" y="194" class="s">ERes2Net voiceprint: David?</text>
+  <text x="60" y="212" class="s">Parakeet STT, Whisper backup</text>
+  <text x="60" y="230" class="s">wake word + fuzzy variants</text>
+  <text x="60" y="248" class="s">fragment judge: complete?</text>
+  <text x="60" y="266" class="s">listen.py · daemon.py</text>
+  <rect x="46" y="296" width="218" height="74" rx="5" class="box"/>
+  <text x="60" y="320" class="t">Web console :7777</text>
+  <text x="60" y="340" class="s">jarvis/web · ui.py</text>
+  <text x="60" y="358" class="s">Auto · Quick · Tools · Plan</text>
+  <rect x="46" y="386" width="218" height="58" rx="5" class="box"/>
+  <text x="60" y="410" class="t">CLI</text>
+  <text x="60" y="430" class="s">python -m jarvis ask|chat|…</text>
+  <rect x="46" y="460" width="218" height="58" rx="5" class="box"/>
+  <text x="60" y="484" class="t">Overlay (Windows)</text>
+  <text x="60" y="504" class="s">overlay.py · Alt+1</text>
+  <rect x="46" y="534" width="218" height="102" rx="5" class="box"/>
+  <text x="60" y="558" class="t">Node PCs</text>
+  <text x="60" y="578" class="s">relay requests to the main</text>
+  <text x="60" y="596" class="s">never speak (may_speak gate)</text>
+  <text x="60" y="614" class="s">only the main talks</text>
+
+  <path d="M264 400 H310" class="ln" marker-end="url(#a)"/>
+
+  <!-- FAST PATH -->
+  <rect x="300" y="92" width="560" height="560" rx="6" class="zone"/>
+  <text x="316" y="116" class="k">FAST PATH · FREE · NO MODEL</text>
+
+  <g>
+    <rect x="320" y="130" width="250" height="52" rx="5" class="free"/><text x="334" y="152" class="t">1 Instant phrases</text><text x="334" y="170" class="s">clock, greetings · instant.py</text>
+    <rect x="320" y="198" width="250" height="52" rx="5" class="free"/><text x="334" y="220" class="t">2 Strict parser</text><text x="334" y="238" class="s">rules, no AI · parse.py</text>
+    <rect x="320" y="266" width="250" height="52" rx="5" class="free"/><text x="334" y="288" class="t">3 Intent registry</text><text x="334" y="306" class="s">allow / confirm · registry.py</text>
+    <rect x="320" y="334" width="250" height="52" rx="5" class="free"/><text x="334" y="356" class="t">4 Gates</text><text x="334" y="374" class="s">hard_deny, always_ask · gates.py</text>
+    <rect x="320" y="402" width="250" height="52" rx="5" class="free"/><text x="334" y="424" class="t">5 History checks</text><text x="334" y="442" class="s">repeats, undo · history.py</text>
+    <rect x="320" y="470" width="250" height="52" rx="5" class="free"/><text x="334" y="492" class="t">6 Direct executor</text><text x="334" y="510" class="s">this PC or a node · remote.call</text>
+    <rect x="320" y="538" width="250" height="52" rx="5" class="free"/><text x="334" y="560" class="t">7 On-screen check</text><text x="334" y="578" class="s">did it happen? · observe.py</text>
+    <rect x="320" y="606" width="250" height="36" rx="5" class="box"/><text x="334" y="629" class="t">8 Record → memory + reply</text>
+  </g>
+  <path d="M445 182 V198 M445 250 V266 M445 318 V334 M445 386 V402 M445 454 V470 M445 522 V538 M445 590 V606" class="lg"/>
+
+  <!-- parser hit examples -->
+  <rect x="592" y="198" width="252" height="158" rx="5" class="box"/>
+  <text x="606" y="220" class="k">PARSER RESOLVES</text>
+  <text x="606" y="244" class="s">"turn bluetooth off"  → bluetooth</text>
+  <text x="606" y="264" class="s">"brightness to 60" → brightness</text>
+  <text x="606" y="284" class="s">"open spotify on the dell"</text>
+  <text x="606" y="302" class="s">     → open_app @ dell</text>
+  <text x="606" y="322" class="s">"lock the screen" → lock_screen</text>
+  <text x="606" y="342" class="s">parser 0.990 · registry 1.000</text>
+
+  <rect x="592" y="540" width="252" height="100" rx="5" class="box"/>
+  <text x="606" y="562" class="k">LOCAL MODELS (CPU)</text>
+  <text x="606" y="584" class="s">MiniLM decider · decide.py</text>
+  <text x="606" y="602" class="s">embeddings · embed.py</text>
+  <text x="606" y="620" class="s">Kokoro / ElevenLabs voice</text>
+
+  <!-- unresolved branch -->
+  <path d="M570 224 H580 V100 H900" class="lw" marker-end="url(#aw)"/>
+  <text x="640" y="94" class="s" fill="#f5b83d">parser can't resolve it</text>
+
+  <!-- MODEL PATH -->
+  <rect x="890" y="92" width="480" height="420" rx="6" class="zone"/>
+  <text x="906" y="116" class="k">MODEL PATH · SUBSCRIPTIONS ONLY</text>
+  <rect x="910" y="130" width="440" height="58" rx="5" class="model"/>
+  <text x="924" y="153" class="t">Planner  brain.judge → brain.py</text>
+  <text x="924" y="173" class="s">several jobs or hard thinking: plan at L3, steps on L1–L3</text>
+  <rect x="910" y="204" width="440" height="52" rx="5" class="model"/>
+  <text x="924" y="226" class="t">Interpreter  interpret.py</text>
+  <text x="924" y="244" class="s">ChatGPT lane: turn words into registry intents</text>
+  <rect x="910" y="272" width="440" height="70" rx="5" class="model"/>
+  <text x="924" y="294" class="t">Brain  inference.py · chatgpt.py</text>
+  <text x="924" y="314" class="s">ChatGPT via Codex subscription, with tools</text>
+  <text x="924" y="332" class="s">on usage limit → fails over to the Claude CLI</text>
+  <rect x="910" y="358" width="440" height="52" rx="5" class="model"/>
+  <text x="924" y="380" class="t">Grok Bot  grokbot.py</text>
+  <text x="924" y="398" class="s">judgement inside apps and accounts, after preflight</text>
+  <rect x="910" y="426" width="440" height="70" rx="5" class="box"/>
+  <text x="924" y="448" class="t">Tools the brain can call</text>
+  <text x="924" y="468" class="s">sandboxed terminal (bubblewrap), browser (Playwright</text>
+  <text x="924" y="486" class="s">MCP via proxy), desktop control, system intents</text>
+  <path d="M1130 188 V204 M1130 256 V272 M1130 342 V358" class="ln"/>
+  <path d="M910 300 H876 V496 H570" class="ln" marker-end="url(#a)"/>
+  <text x="640" y="488" class="s">intents go back through the gates</text>
+
+  <!-- CONFIRM -->
+  <rect x="890" y="532" width="480" height="120" rx="6" class="risk"/>
+  <text x="906" y="556" class="t">Confirm queue  confirm.py · browser_gate.py</text>
+  <text x="906" y="578" class="s">money, messages, pair/forget, unreadable shell → waits</text>
+  <text x="906" y="596" class="s">David answers in the console gate, or says "Jarvis, yes"</text>
+  <text x="906" y="614" class="s">hard refusals never run: credentials, wipes, own files</text>
+  <text x="906" y="634" class="s">notify-send on the main</text>
+  <path d="M570 372 H860 V590 H890" class="ln" marker-end="url(#a)"/>
+  <text x="600" y="390" class="s">risky → waits for David</text>
+
+  <!-- MEMORY -->
+  <rect x="30" y="676" width="400" height="254" rx="6" class="zone"/>
+  <text x="46" y="700" class="k">MEMORY · ON THE MAIN</text>
+  <rect x="46" y="714" width="368" height="56" rx="5" class="box"/>
+  <text x="60" y="736" class="t">Memory heap  memory.sqlite3</text>
+  <text x="60" y="756" class="s">BM25 + vectors, RRF fused · memory.py</text>
+  <rect x="46" y="782" width="368" height="56" rx="5" class="box"/>
+  <text x="60" y="804" class="t">Obsidian vault  (read-only)</text>
+  <text x="60" y="824" class="s">244 notes indexed · vault.py · tasks.py</text>
+  <rect x="46" y="850" width="368" height="64" rx="5" class="box"/>
+  <text x="60" y="872" class="t">Knowledge engine</text>
+  <text x="60" y="892" class="s">reader → librarian → nightly checker</text>
+  <text x="60" y="908" class="s">claims cite sources · knowledge.py</text>
+
+  <!-- CLUSTER -->
+  <rect x="450" y="676" width="920" height="254" rx="6" class="zone"/>
+  <text x="466" y="700" class="k">CLUSTER · ONE MAIN, LIGHT NODES</text>
+  <rect x="466" y="714" width="300" height="200" rx="5" class="box"/>
+  <text x="480" y="738" class="t">Main · Zenbook (Arch, Hyprland)</text>
+  <text x="480" y="760" class="s">hub on 127.0.0.1:7780</text>
+  <text x="480" y="778" class="s">brain, memory, vault, voice</text>
+  <text x="480" y="796" class="s">release gate: full test suite</text>
+  <text x="480" y="814" class="s">must pass before nodes get code</text>
+  <text x="480" y="836" class="s">Remote view sessions (hub side)</text>
+  <text x="480" y="854" class="s">ControllerPause: main's Lan</text>
+  <text x="480" y="872" class="s">Mouse paused while driving a node</text>
+  <text x="480" y="896" class="s">cluster.py · release.py · deploy.py</text>
+
+  <rect x="1050" y="714" width="300" height="200" rx="5" class="box"/>
+  <text x="1064" y="738" class="t">Node · Dell G15 (Windows 11)</text>
+  <text x="1064" y="760" class="s">node agent long-polls the hub</text>
+  <text x="1064" y="778" class="s">pulls signed, tested releases</text>
+  <text x="1064" y="796" class="s">runs jobs: apps, files, desktop</text>
+  <text x="1064" y="814" class="s">streams screen for Remote view,</text>
+  <text x="1064" y="832" class="s">injects David's mouse + keys</text>
+  <text x="1064" y="850" class="s">releases held keys on any end</text>
+  <text x="1064" y="874" class="s">silent: never speaks</text>
+  <text x="1064" y="896" class="s">node.py · remote_view.py</text>
+
+  <path d="M1050 760 H766" class="ln" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="800" y="750" class="s">SSH forward tunnel (ssh -L)</text>
+  <text x="800" y="776" class="s">jobs, frames, input, releases</text>
+  <path d="M1050 850 H766" class="lg" stroke-dasharray="3 4" marker-start="url(#ag)" marker-end="url(#ag)"/>
+  <text x="800" y="840" class="s" fill="#5cc8a0">Lan Mouse: same LAN only</text>
+  <text x="800" y="866" class="s">Tailscale refused · guard turns</text>
+  <text x="800" y="882" class="s">it off when the PCs are apart</text>
+
+  <path d="M445 642 V660 H230 V676" class="ln" marker-end="url(#a)"/>
+  <path d="M570 510 H582 V660 H740 V714" class="ln" marker-end="url(#a)"/>
+  <text x="600" y="654" class="s">jobs for a node</text>
+</svg>

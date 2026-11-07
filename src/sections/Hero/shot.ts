@@ -15,8 +15,12 @@ export const SCALE_PER_DEG = DEG / (2 * CAM_DISTANCE);
 /** Lift per degree of tilt, in plane heights, so the tilted top edge stays near the first viewport. */
 export const LIFT_PER_DEG = 0.04 / TILT_DESKTOP;
 
-export function shotUrl(theme: ShotTheme, hi: boolean) {
-  return `${import.meta.env.BASE_URL}screens/console-${theme}${hi ? "" : "-1440"}.webp`;
+/** The console as captured on 2026-11-07 (dark only since the October redesign). */
+export const SHOT_W = 1600;
+export const SHOT_H = 1000;
+
+export function shotUrl(_theme: ShotTheme, _hi: boolean) {
+  return `${import.meta.env.BASE_URL}screens/console/console.webp`;
 }
 
 export type SceneProps = {
